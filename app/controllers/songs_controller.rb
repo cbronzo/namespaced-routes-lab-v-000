@@ -26,21 +26,11 @@ class SongsController < ApplicationController
 
   def new
     @preference = Preference.first
-    if @preference && @preference.artist_sort_order
-      @artists = Artist.order(name: @preference.artist_sort_order)
-    else
-      @a
-    
-    
-    
-    
-    if Preference.last.allow_create_songs == true
-      @song = Song.new
-    else
+    if @preference && !@preference.allow_create_songs
       redirect_to songs_path
+    else
+      @song = Song.new
     end
-    
-  end
 
   def create
     @song = Song.new(song_params)
