@@ -25,7 +25,11 @@ class SongsController < ApplicationController
   end
 
   def new
-    @song = Song.new
+    @preference = Preference.first
+    if @preference && @preference.artist_sort_order
+      @artists = Artist.order(name: @preference.artist_sort_order)
+    else
+      @a
     
     
     
