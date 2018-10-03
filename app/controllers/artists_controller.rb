@@ -8,7 +8,7 @@ class ArtistsController < ApplicationController
   end
 
   def new
-    @preference = Preference.first
+    @preference = Preference.new
     if @preference && @preference.artist_sort_order
       @artists = Artist.order(name: @preference.artist_sort_order)
     else
